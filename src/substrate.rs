@@ -49,7 +49,7 @@ use obce::substrate::{
 use pallet_assets::Config as AssetConfig;
 
 #[derive(Default)]
-pub struct AssetExtension;
+pub struct AssetsExtension;
 
 impl<T: SysConfig + AssetConfig + ContractConfig> AssetsEnvironment for T {
     type AccountId = <T as SysConfig>::AccountId;
@@ -58,7 +58,7 @@ impl<T: SysConfig + AssetConfig + ContractConfig> AssetsEnvironment for T {
 }
 
 #[obce::implementation]
-impl<'a, 'b, E, T> PalletAssets<T> for ExtensionContext<'a, 'b, E, T, AssetExtension>
+impl<'a, 'b, E, T> PalletAssets<T> for ExtensionContext<'a, 'b, E, T, AssetsExtension>
 where
     T: SysConfig + AssetConfig + ContractConfig,
     <<T as SysConfig>::Lookup as StaticLookup>::Source: From<<T as SysConfig>::AccountId>,
@@ -184,7 +184,7 @@ pub trait Internal<T: AssetsEnvironment + SysConfig> {
     fn select_origin(&mut self, origin: Origin) -> Result<T::Origin, Error<T>>;
 }
 
-impl<'a, 'b, E, T> Internal<T> for ExtensionContext<'a, 'b, E, T, AssetExtension>
+impl<'a, 'b, E, T> Internal<T> for ExtensionContext<'a, 'b, E, T, AssetsExtension>
 where
     T: SysConfig + AssetConfig + ContractConfig,
     <<T as SysConfig>::Lookup as StaticLookup>::Source: From<<T as SysConfig>::AccountId>,
