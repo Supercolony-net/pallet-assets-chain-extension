@@ -18,3 +18,32 @@
 // LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+use crate::traits::{
+    Environment as AssetsEnvironment,
+    PalletAssets as PalletAssetsTrait,
+};
+use obce::ink::ink_env::{
+    DefaultEnvironment,
+    Environment,
+};
+
+#[derive(Default, Debug, Clone, Copy, PartialEq, Eq, scale::Encode, scale::Decode)]
+#[cfg_attr(feature = "std", derive(scale_info::TypeInfo))]
+#[derive(ink_storage::traits::SpreadLayout, ink_storage::traits::PackedLayout, ink_storage::traits::SpreadAllocate)]
+#[cfg_attr(feature = "std", derive(ink_storage::traits::StorageLayout))]
+pub struct PalletAssets;
+
+impl<T: Environment> AssetsEnvironment for T {
+    type AccountId = T::AccountId;
+    type AssetId = u32;
+    type Balance = T::Balance;
+}
+
+impl PalletAssets {
+    pub fn new() -> Self {
+        Self {}
+    }
+}
+
+impl PalletAssetsTrait<DefaultEnvironment> for PalletAssets {}

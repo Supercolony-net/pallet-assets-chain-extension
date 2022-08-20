@@ -18,3 +18,17 @@
 // LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+#![cfg_attr(not(feature = "std"), no_std)]
+
+/// Contains all stuff related to the `PalletAssets` trait. You can be imported into the `ink`
+/// and `substrate` codebase.
+pub mod traits;
+
+/// Implementation of the `PalletAssets` trait for the chain extension on `substrate` level.
+#[cfg(feature = "substrate")]
+pub mod substrate;
+
+/// Implementation of the `PalletAssets` trait for the chain extension on `ink` level.
+#[cfg(feature = "ink")]
+pub mod ink;
