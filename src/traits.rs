@@ -67,8 +67,7 @@ pub trait Environment {
 }
 
 // TODO: Add comments
-/// id = 2 bytes of blake2b("pallet-assets-chain-extension@v0.1")
-#[obce::definition(id = 0x48f6)]
+#[obce::definition(id = "pallet-assets-chain-extension@v0.1")]
 pub trait PalletAssets<T: Environment> {
     fn create(&mut self, id: T::AssetId, admin: T::AccountId, min_balance: T::Balance) -> Result<(), Error<T>>;
 
