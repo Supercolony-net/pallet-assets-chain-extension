@@ -47,3 +47,7 @@ ink-std = [
 	"ink_storage",
 	"ink_metadata",
 ]
+runtime-benchmarks = [
+	"obce/runtime-benchmarks",
+	"pallet-assets/runtime-benchmarks",
+]
