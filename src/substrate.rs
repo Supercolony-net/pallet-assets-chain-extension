@@ -178,10 +178,10 @@ where
 /// Trait with additional helpers functions.
 pub trait Internal<T: AssetsEnvironment + SysConfig> {
     /// Returns the `AccountId` of the contract as signed origin.
-    fn origin(&mut self) -> T::Origin;
+    fn origin(&mut self) -> T::RuntimeOrigin;
 
     /// Returns the `AccountId` of the contract as signed origin based on the permission.
-    fn select_origin(&mut self, origin: Origin) -> Result<T::Origin, Error<T>>;
+    fn select_origin(&mut self, origin: Origin) -> Result<T::RuntimeOrigin, Error<T>>;
 }
 
 impl<'a, 'b, E, T> Internal<T> for ExtensionContext<'a, 'b, E, T, AssetsExtension>
@@ -191,11 +191,11 @@ where
     E: Ext<T = T>,
     <E::T as SysConfig>::AccountId: UncheckedFrom<<E::T as SysConfig>::Hash> + AsRef<[u8]>,
 {
-    fn origin(&mut self) -> T::Origin {
+    fn origin(&mut self) -> T::RuntimeOrigin {
         RawOrigin::Signed(self.env.ext().address().clone()).into()
     }
 
-    fn select_origin(&mut self, origin: Origin) -> Result<T::Origin, Error<T>> {
+    fn select_origin(&mut self, origin: Origin) -> Result<T::RuntimeOrigin, Error<T>> {
         let origin = RawOrigin::Signed(match origin {
             Origin::Caller => {
                 // TODO: Add check that the contract is admin. Right now `asset-pallet` doesn't have getter for admin.
