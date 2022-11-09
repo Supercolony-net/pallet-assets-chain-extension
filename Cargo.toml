@@ -8,10 +8,10 @@ version = "0.1.1"
 # Common deps
 scale = { package = "parity-scale-codec", version = "3", default-features = false, features = ["derive"] }
 scale-info = { version = "2", default-features = false, features = ["derive"] }
-obce = { git = "https://github.com/Supercolony-net/obce", branch = "polkadot-v0.9.31", default-features = false }
+obce = { git = "https://github.com/Supercolony-net/obce", branch = "polkadot-v0.9.32", default-features = false }
 
 # Substrate deps
-pallet-assets = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.31", default-features = false, optional = true }
+pallet-assets = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.32", default-features = false, optional = true }
 
 # Ink deps
 ink_primitives = { version = "3", default-features = false, optional = true }
