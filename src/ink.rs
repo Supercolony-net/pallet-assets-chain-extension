@@ -36,7 +36,7 @@ pub struct AssetsExtension;
 
 impl<T: Environment> AssetsEnvironment for T {
     type AccountId = T::AccountId;
-    type AssetId = u32;
+    type AssetId = u128;
     type Balance = T::Balance;
 }
 
